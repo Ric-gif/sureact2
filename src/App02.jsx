@@ -4,12 +4,12 @@ import countReducer from './Reducers/niceCountReducer';
 import * as action from './Actions/niceActions';
 
 export default function App() {
-    const [count, dispatchCount] = useReducer(countReducer, 0);
+    const [count, dispatchCount] = useReducer(countReducer, {value: 0});
     const [addInput, setAddInput] = useState(0);
     const [multiInput, setMultiInput] = useState(0);
 
     useEffect(_ => {
-        if (count === 0) {
+        if (count.value === 0) {
             setAddInput(0);
             setMultiInput(0);
         }
@@ -18,7 +18,7 @@ export default function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h2>Counter: {count}</h2>
+                <h2>Counter: {count.value}</h2>
                 <div>
                     <button className="yellow" onClick={_ => dispatchCount(action.plusOne())}>+1</button>
                     <button className="blue" onClick={_ => dispatchCount(action.minusOne())}>-1</button>
